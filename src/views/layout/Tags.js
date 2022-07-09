@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addTag, removeTag, emptyTag } from '@/redux/actions/tagList';
-import { menus } from '../../router/menus';
+import { menus } from '@/router/menus';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 class Tags extends Component {
@@ -115,7 +115,4 @@ const mapDispatchToProps = dispatch => ({
 		dispatch(emptyTag());
 	}
 });
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(withRouter(Tags));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Tags));

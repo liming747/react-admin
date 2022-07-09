@@ -1,5 +1,38 @@
-import { Table, Tag, Divider, Button } from 'antd';
+import { Table, Tag, Divider, Button, Row, Col, Modal, Form, Input, Radio } from 'antd';
 import React, { PureComponent } from 'react';
+
+const CollectionCreateForm = Form.create({ name: 'form_in_modal' })(
+	// eslint-disable-next-line
+	class extends React.Component {
+		render() {
+			const { visible, onCancel, onCreate, form } = this.props;
+			const { getFieldDecorator } = form;
+			return (
+				<Modal visible={visible} title="Create a new collection" okText="Create" onCancel={onCancel} onOk={onCreate}>
+					<Form layout="vertical">
+						<Form.Item label="Title">
+							{getFieldDecorator('title', {
+								rules: [{ required: true, message: 'Please input the title of collection!' }]
+							})(<Input />)}
+						</Form.Item>
+						<Form.Item label="Description">{getFieldDecorator('description')(<Input type="textarea" />)}</Form.Item>
+						<Form.Item className="collection-create-form_last-form-item">
+							{getFieldDecorator('modifier', {
+								initialValue: 'public'
+							})(
+								<Radio.Group>
+									<Radio value="public">Public</Radio>
+									<Radio value="private">Private</Radio>
+								</Radio.Group>
+							)}
+						</Form.Item>
+					</Form>
+				</Modal>
+			);
+		}
+	}
+);
+
 export default class OutOfTheWarehouse extends PureComponent {
 	state = {
 		columns: [
@@ -75,12 +108,46 @@ export default class OutOfTheWarehouse extends PureComponent {
 				address: 'Sidney No. 1 Lake Park',
 				tags: ['cool', 'teacher']
 			}
-		]
+		],
+		visible: false
+	};
+	showModal = () => {
+		this.setState({ visible: true });
+	};
+
+	handleCancel = () => {
+		this.setState({ visible: false });
+	};
+	saveFormRef = formRef => {
+		this.formRef = formRef;
+	};
+	handleCreate = () => {
+		const { form } = this.formRef.props;
+		form.validateFields((err, values) => {
+			if (err) {
+				return;
+			}
+
+			console.log('Received values of form: ', values);
+			form.resetFields();
+			this.setState({ visible: false });
+		});
 	};
 	render() {
 		const { data, columns } = this.state;
 		return (
 			<div>
+				<Row gutter={[4, 16]}>
+					<Col span={2}>
+						<Button type="primary" onClick={this.showModal}>
+							商品录入
+						</Button>
+					</Col>
+					<Col span={2}>
+						<Button type="primary">入库</Button>
+					</Col>
+				</Row>
+				<CollectionCreateForm wrappedComponentRef={this.saveFormRef} visible={this.state.visible} onCancel={this.handleCancel} onCreate={this.handleCreate} />
 				<Table columns={columns} dataSource={data} />
 			</div>
 		);

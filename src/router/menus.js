@@ -45,7 +45,7 @@ export const menus = [
 			},
 			{
 				path: '/InStock/OutOfTheWarehouse',
-				title: '出库'
+				title: '出库历史'
 			}
 		]
 	}
