@@ -14,17 +14,17 @@ class Login extends Component {
 	}
 	login = e => {
 		e.preventDefault();
-		// this.props.form.validateFields((err, values) => {
-		// if (!err) {
-		localStorage.setItem('isLogin', '1');
-		// 模拟生成一些数据
-		this.props.setUserInfo(Object.assign({}, 123, { role: { type: 1, name: '超级管理员' } }));
-		localStorage.setItem('userInfo', JSON.stringify(Object.assign({}, 123, { role: { type: 1, name: '超级管理员' } })));
-		this.props.history.push('/dashboard');
-		// } else {
-		// 	console.log(err);
-		// }
-		// });
+		this.props.form.validateFields((err, values) => {
+			if (!err) {
+				localStorage.setItem('isLogin', '1');
+				// 模拟生成一些数据
+				this.props.setUserInfo(Object.assign({}, 123, { role: { type: 1, name: '超级管理员' } }));
+				localStorage.setItem('userInfo', JSON.stringify(Object.assign({}, 123, { role: { type: 1, name: '超级管理员' } })));
+				this.props.history.push('/dashboard');
+			} else {
+				console.log(err);
+			}
+		});
 	};
 	componentDidMount() {
 		window.addEventListener('resize', this.onResize);
@@ -40,7 +40,7 @@ class Login extends Component {
 		this.setState({ clientHeight: document.documentElement.clientHeight || document.body.clientHeight });
 	}
 	render() {
-		// const { getFieldDecorator } = this.props.form;
+		const { getFieldDecorator } = this.props.form;
 		return (
 			<div className="container">
 				<Particles
@@ -57,20 +57,22 @@ class Login extends Component {
 				/>
 				<div className="content">
 					<div className="title">后台管理系统</div>
-					<Form className="login-form" rules={[{ required: true }]}>
-						<FormItem>
-							<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
-						</FormItem>
-						<FormItem>
-							<Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="密码" />
-						</FormItem>
-						<FormItem>
-							<Button type="primary" htmlType="submit" block onClick={this.login}>
-								登录
-							</Button>
-							<div style={{ color: '#999', paddingTop: '10px', textAlign: 'center' }}>Tips : 输入任意用户名密码即可</div>
-						</FormItem>
-					</Form>
+					<FormItem>
+						{getFieldDecorator('userName', {
+							rules: [{ required: true, message: '请填写用户名！' }]
+						})(<Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />)}
+					</FormItem>
+					<FormItem>
+						{getFieldDecorator('password', {
+							rules: [{ required: true, message: '请填写密码！' }]
+						})(<Input.Password prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="密码" />)}
+					</FormItem>
+					<FormItem>
+						<Button type="primary" htmlType="submit" block onClick={this.login}>
+							登录
+						</Button>
+						<div style={{ color: '#999', paddingTop: '10px', textAlign: 'center' }}>Tips : 输入任意用户名密码即可</div>
+					</FormItem>
 				</div>
 			</div>
 		);
@@ -83,4 +85,4 @@ const mapDispatchToProps = dispatch => ({
 		dispatch(setUserInfo(data));
 	}
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(Login));

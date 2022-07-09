@@ -49,6 +49,33 @@ export const menus = [
 			}
 		]
 	}
+	// {
+	// 	path: '/chart',
+	// 	title: '图表',
+	// 	icon: 'area-chart',
+	// 	children: [
+	// 		{
+	// 			path: '/chart/line',
+	// 			title: '折线图'
+	// 		},
+	// 		{
+	// 			path: '/chart/keyboard',
+	// 			title: '键盘图表'
+	// 		},
+	// 		{
+	// 			path: '/chart/bar',
+	// 			title: '柱状图'
+	// 		},
+	// 		{
+	// 			path: '/chart/pie',
+	// 			title: '饼图'
+	// 		},
+	// 		{
+	// 			path: '/chart/mixin',
+	// 			title: '混合图表'
+	// 		}
+	// 	]
+	// }
 ];
 //  const menus = [
 // 	{
@@ -103,33 +130,6 @@ export const menus = [
 // 			{
 // 				path: '/table/search',
 // 				title: '表格搜索'
-// 			}
-// 		]
-// 	},
-// 	{
-// 		path: '/chart',
-// 		title: '图表',
-// 		icon: 'area-chart',
-// 		children: [
-// 			{
-// 				path: '/chart/line',
-// 				title: '折线图'
-// 			},
-// 			{
-// 				path: '/chart/keyboard',
-// 				title: '键盘图表'
-// 			},
-// 			{
-// 				path: '/chart/bar',
-// 				title: '柱状图'
-// 			},
-// 			{
-// 				path: '/chart/pie',
-// 				title: '饼图'
-// 			},
-// 			{
-// 				path: '/chart/mixin',
-// 				title: '混合图表'
 // 			}
 // 		]
 // 	},

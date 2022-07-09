@@ -2,11 +2,11 @@ import Dashboard from '../views/dashboard/Index';
 import Icon from '../views/icon/Index';
 import Error404 from '../views/error/Error404';
 import Error500 from '../views/error/Error500';
-// import LineChart from '../views/chart/LineChart';
-// import Keyboard from '../views/chart/KeyBoard';
-// import BarChart from '../views/chart/BarChart';
-// import PieChart from '../views/chart/PieChart';
-// import MixinChart from '../views/chart/MixinChart';
+import LineChart from '../views/chart/LineChart';
+import Keyboard from '../views/chart/KeyBoard';
+import BarChart from '../views/chart/BarChart';
+import PieChart from '../views/chart/PieChart';
+import MixinChart from '../views/chart/MixinChart';
 // import Intercept from '../views/permission/Intercept';
 // import Toggle from '../views/permission/Toggle';
 // import TableBasic from '../views/table/TableBasic';
@@ -38,11 +38,11 @@ export const routes = [
 	// { path: '/table/basic', component: TableBasic },
 	// { path: '/table/edit', component: TableEdit },
 	// { path: '/table/search', component: TableSearch },
-	// { path: '/chart/line', component: LineChart },
-	// { path: '/chart/keyboard', component: Keyboard },
-	// { path: '/chart/bar', component: BarChart },
-	// { path: '/chart/pie', component: PieChart },
-	// { path: '/chart/mixin', component: MixinChart },
+	{ path: '/chart/line', component: LineChart },
+	{ path: '/chart/keyboard', component: Keyboard },
+	{ path: '/chart/bar', component: BarChart },
+	{ path: '/chart/pie', component: PieChart },
+	{ path: '/chart/mixin', component: MixinChart },
 	// { path: '/control/tree', component: BasicTree },
 	// { path: '/control/select', component: BasicSelect },
 	// { path: '/control/other', component: Other },
